@@ -147,8 +147,12 @@ document.querySelector("#pulse").addEventListener('click', function () {
                                 nums = nums + 3;
                         }
                         
-                       
-                        let x = full_data.filter(function(element, index){
+                        // delete first two indices of array
+                        var fdata = full_data.slice(2);
+                        console.log(fdata);
+
+                        // return alternate indices
+                        let alter_data = fdata.filter(function(element, index){
                             return index % 2 == 0;
                         });
                        
@@ -159,13 +163,13 @@ document.querySelector("#pulse").addEventListener('click', function () {
                         weather_id2.innerHTML = `  
                         ${Array(6).join(0).split(0).map(function(item , i){
 
-                            if (full_data[i].shortForecast.indexOf('Rain') !== -1) {
+                            if (alter_data[i].shortForecast.indexOf('Rain') !== -1) {
                                 weather_icon = './img/rain-clouds.png';
-                            } else if (full_data[i].shortForecast.indexOf('Clear') !== -1) {
+                            } else if (alter_data[i].shortForecast.indexOf('Clear') !== -1) {
                                 weather_icon = './img/sun.png';
-                            } else if (full_data[i].shortForecast.indexOf('Sunny') !== -1) {
+                            } else if (alter_data[i].shortForecast.indexOf('Sunny') !== -1) {
                                 weather_icon = './img/sun.png';
-                            } else if (full_data[i].shortForecast.indexOf('Thunderstorms') !== -1) {
+                            } else if (alter_data[i].shortForecast.indexOf('Thunderstorms') !== -1) {
                                 weather_icon = './img/stormrain-thunders.png';
                             } else {
                                 weather_icon = './img/sun.png';
@@ -174,10 +178,10 @@ document.querySelector("#pulse").addEventListener('click', function () {
                             return `
                         <div class="col-md-2 sm-days pb-3">
                             <div class="card transp text-center">
-                                <h5 class="card-header hc">${full_data[i].name}</h5>
+                                <h5 class="card-header hc">${alter_data[i].name}</h5>
                                 <img class="current-city-weather" style="margin: 0 auto;" width="120px;" src="${weather_icon}" alt="Card image">
                                 <div class="card-footer">
-                                    <h3> ${full_data[i].temperature}<sup class="font-weight-light">o <sub>F</sub></sup></h3>   
+                                    <h3> ${alter_data[i].temperature}<sup class="font-weight-light">o <sub>F</sub></sup></h3>   
                                 </div>
                             </div>
                         </div> `}).join('')};`

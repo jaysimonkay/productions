@@ -44,29 +44,7 @@ document.querySelector("#pulse").addEventListener('click', function () {
                     success: function (data) {
 
                         var full_data = data.properties.periods;
-                        // console.log(full_data);
-                        //     // var weather_val = [];
-                        //      for (var i = 0; i < 10; i++) {
-                        //       weather_val.push = (`<div>${full_data[i].temperature}</div>`);
-                        // //     }
-
-
-                        // var weather_icon = "./img/sun.png";
-
-                        // for (var i = 0; i < full_data.length; i++) {
-                        //     // console.log(i);
-                        //     if (full_data[i].shortForecast.indexOf('Rain') !== -1) {
-                        //         weather_icon = './img/rain-clouds.png';
-                        //     } else if (full_data[i].shortForecast.indexOf('Clear') !== -1) {
-                        //         weather_icon = './img/sun.png';
-                        //     } else if (full_data[i].shortForecast.indexOf('Sunny') !== -1) {
-                        //         weather_icon = './img/sun.png';
-                        //     } else if (full_data[i].shortForecast.indexOf('Thunderstorms') !== -1) {
-                        //         weather_icon = './img/stormrain-thunders.png';
-                        //     } else {
-                        //         weather_icon = './img/sun.png';
-                        //     }
-                        // };
+                     
                         var weather_id = document.querySelector("#weather-body");
                         var weather_id2 = document.querySelector("#weather-body2");
                         var num = 0;
@@ -158,8 +136,33 @@ document.querySelector("#pulse").addEventListener('click', function () {
                        
                         var weather_icon = " ";
                         // use template literals to create and array of 6 items and then itereate through using map
-                        // Array(5).fill() instead of Array(5).join(0).split(0)
-                        // Array(5 + 1).fill('').reduce((finalMarkup) => finalMarkup + `stuff to be repeated \n`);
+                        
+                        // Alternative I: Array(5).fill() instead of Array(5).join(0).split(0)
+                        // Alternative II: Array(5 + 1).fill('').reduce((finalMarkup) => finalMarkup + `stuff to be repeated \n`);
+                        // Magic number +1 is for Array[0], which never receives any value, in this kind of logic.
+                        // Alternative III: Array(5 + 1).fill('').reduce((finalMarkup) => finalMarkup + `stuff to be repeated \n`); 
+
+                        // sample usage I
+                        // const dotClick = document.createElement('div');
+                        //     dotClick.innerHTML = `
+                        //     <div class="dot-ctn">
+                        //         ${Array(8).fill().map((item, i) => `
+                        //         <span class="dot" onclick="currentSlide(${i+1})" tabindex="0"></span>
+                        //         `).join('')}
+                        //     </div>
+                        //     `
+
+                        // sample usage II
+                        // element = document.createElement('div')
+                        // element.innerHTML = `
+                        // <h1>This element has items</h1>
+                        // ${this._items.map((item, i) => `
+                        //     <div>
+                        //     I am item number ${i < 10 ? '0' + (i + 1) : i + 1}. 
+                        //     My name is ${item.name}.
+                        //     </div>
+                        // `.trim()).join('')}
+                        // `
                         weather_id2.innerHTML = `  
                         ${Array(6).join(0).split(0).map(function(item , i){
 

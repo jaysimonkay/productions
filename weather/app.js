@@ -51,6 +51,28 @@ document.querySelector("#pulse").addEventListener('click', function () {
 
                         // create usable function with template literals
                         // note that the first thing in tagged literals is a string literal and the second the parameter
+                        // sample usage I: 
+                        // const name = 'Dave'
+                        // const position = '10th'
+                        // const number = 5
+
+                        // function getMessage(literals, name, position, number){
+                        // console.log(literals)
+                        // console.log(name)
+                        // console.log(position)
+                        // console.log(number)
+
+                        // return literals[0] + name + literals[1] + position + literals[2] + number + literals[3]
+                        // }
+
+                        // const message = getMessage`Hello ${name}, you are ${position} in queue ${number}.`
+                        // console.log(message)
+
+                        // // ['Hello ', ', you are ', 'in queue ', '.']
+                        // // Dave
+                        // // 10th
+                        // // 5
+                        // // Hello Dave, you are 10th in queue 5.
                         function weather_icon_check(literal, short_forecast){                            
                             var weather_icon = " "; 
                             if(short_forecast.indexOf('Rain') != -1){
@@ -64,28 +86,16 @@ document.querySelector("#pulse").addEventListener('click', function () {
                             } else {
                                 weather_icon = './img/eclipse.png';
                             }
-                            console.log("weather icon displayed: ", weather_icon);
-                            console.log("short forecast displayed: ", short_forecast);
                             return `${weather_icon}`;
-                        }
-
-                        console.log("Checking short forecast: ", full_data[num+1].shortForecast);
-
-                        // var initial_data = full_data.slice(0,3);
-                        // // console.log(fdata);
-
-                        // // return alternate indices
-                        // let first_data = intial_data.filter(function(element, index){
-                        //     return index % 2 == 0;
-                        // });
+                        };
                         weather_id.innerHTML = `
                                 <div class="col-md-6 py-3">
                                     <div class="row">
                                         <div class="col-12 pb-2">
                                             <div class="card transp text-center">
-                    <h3 class="card-header current-city-weather">${full_data[num].temperature}<sup class="font-weight-light">o <sub>F</sub></sup> | ${full_data[num].shortForecast}</h3>
+                    <h3 class="card-header current-city-weather">${full_data[num].temperature}<sup class="font-weight-light">o <sub>F</sub></sup> <span class="weather_colors">|</span> ${full_data[num].shortForecast}</h3>
                                                 <img class="current-city-weather" style="margin: 0 auto;" width="150px;" src="${weather_icon_check`${full_data[num].shortForecast}`}" alt="Card image">
-                                                <h4 class="current-city-weather px-0">${full_data[num].name}</h4>
+                                                <h4 class="current-city-weather px-0 weather_colors">${full_data[num].name}</h4>
                                                 <h6 class="current-city-weather px-3 text-justify">${full_data[num].detailedForecast}</h6>
                                                 <div class="card-footer">
                                                 <div class="row">
@@ -138,23 +148,23 @@ document.querySelector("#pulse").addEventListener('click', function () {
                                 </div>`;
 
                         // create handler to return day values only using name values
-                        var nums = 0;
+                        var fdata;
                         switch (full_data[0].name) {
                             case 'This Afternoon':
-                                nums = nums + 2;
+                                fdata = full_data.slice(2);
                                 break;
                             case 'Tonight':
-                                nums = nums + 1;
+                                fdata = full_data.slice(1);
                                 break;
                             case 'Today':
-                                nums = nums + 2;
+                                fdata = full_data.slice(2);
                                 break;
                             default:
-                                nums = nums + 3;
+                                fdata = full_data[0];
                         }
                         
                         // delete first two indices of array
-                        var fdata = full_data.slice(2);
+                        // var fdata = full_data.slice(2);
                         // console.log(fdata);
 
                         // return alternate indices
@@ -192,7 +202,7 @@ document.querySelector("#pulse").addEventListener('click', function () {
                         // `.trim()).join('')}
                         // `
                         weather_id2.innerHTML = `  
-                        ${Array(alter_data.length).join(0).split(0).map(function(item , i){
+                        ${Array(6).join(0).split(0).map(function(item , i){
 
                             if (alter_data[i].shortForecast.indexOf('Rain') !== -1) {
                                 weather_icon = './img/rain-clouds.png';
@@ -209,7 +219,7 @@ document.querySelector("#pulse").addEventListener('click', function () {
                             return `
                         <div class="col-md-2 sm-days pb-3">
                             <div class="card transp text-center">
-                                <h5 class="card-header hc">${alter_data[i].name}</h5>
+                                <h5 class="card-header hc px-0">${alter_data[i].name}</h5>
                                 <img class="current-city-weather" style="margin: 0 auto;" width="120px;" src="${weather_icon}" alt="Card image">
                                 <div class="card-footer">
                                     <h3> ${alter_data[i].temperature}<sup class="font-weight-light">o <sub>F</sub></sup></h3>   
@@ -221,7 +231,6 @@ document.querySelector("#pulse").addEventListener('click', function () {
                 });
             });
         });
-
     };
     weather();
 

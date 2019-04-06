@@ -99,8 +99,8 @@ document.querySelector("#pulse").addEventListener('click', function () {
                                                 <h6 class="current-city-weather px-3 text-justify">${full_data[num].detailedForecast}</h6>
                                                 <div class="card-footer">
                                                 <div class="row">
-                                                    <div class="col"> <i class="wi wi-strong-wind pr-2"></i><span class="value">${full_data[num].windSpeed}</span></div>
-                                                    <div class="col"> <i class="wi wi-wind-default pr-2"></i><span class="value">${full_data[num].windDirection}</span></div>
+                                                    <div class="col"> <i class="wi wi-strong-wind pr-2 weather_colors"></i><span class="value">${full_data[num].windSpeed}</span></div>
+                                                    <div class="col"> <i class="wi wi-wind-default pr-2 weather_colors"></i><span class="value">${full_data[num].windDirection}</span></div>
                                                 </div>
                                                 </div>
                                             </div>

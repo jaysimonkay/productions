@@ -1,0 +1,5 @@
+1. use any selection tool(quick selection, lasso, polygonal, magnetic lasso etc) to select image
+2. ensure image is locked(if needed to be unlocked drag lock image to the trash). 
+3. click option and drag selection to choice spot
+4. edit > transform > flip horizontally
+5. cmd + d to deselect
